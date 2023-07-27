@@ -1,5 +1,8 @@
 package com.newkinidev;
 
+import com.newkinidev.block.ModBlockGroup;
+import com.newkinidev.block.ModBlocks;
+import com.newkinidev.item.ModItemGroup;
 import com.newkinidev.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -12,6 +15,10 @@ public class MineLife implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModItemGroup.registerModGroups();
+		ModBlockGroup.registerModGroups();
+
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 	}
 }
