@@ -30,8 +30,8 @@ import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(Minelif.MODID)
-public class Minelif {
+@Mod(Minelife.MODID)
+public class Minelife {
 
     // Define mod id in a common place for everything to reference
     public static final String MODID = "minelife";
@@ -61,7 +61,7 @@ public class Minelif {
             output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
             }).build());
 
-    public Minelif() {
+    public Minelife() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register the commonSetup method for modloading
