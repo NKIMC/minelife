@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "***",
+    "*G*",
+    "/**"
+  ],
+  "key": {
+    "*": {
+      "item": "minecraft:stone"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "minelife:magnifier"
+  }
+}
