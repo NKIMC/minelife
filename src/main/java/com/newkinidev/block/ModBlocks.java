@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import com.newkinidev.MineLife;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -14,7 +15,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-    public static final Block SUPPORT_BLOCK = new Block(FabricBlockSettings.create().strength(4.0f).sounds(BlockSoundGroup.STONE));
+    public static final Block SUPPORT_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_ORE).sounds(BlockSoundGroup.STONE));
 
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries){
         entries.add(SUPPORT_BLOCK);

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "minelife:block/support_block"
+    }
+  }
+}
