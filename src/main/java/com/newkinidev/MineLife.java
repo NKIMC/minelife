@@ -1,6 +1,7 @@
 package com.newkinidev;
 
 import com.newkinidev.block.BoxBlock;
+import com.newkinidev.block.BoxBlockEntity;
 import com.newkinidev.block.ModBlockGroup;
 import com.newkinidev.block.ModBlocks;
 import com.newkinidev.item.ModItemGroup;
@@ -9,6 +10,7 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
