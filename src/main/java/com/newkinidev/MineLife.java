@@ -20,6 +20,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MineLife implements ModInitializer {
+
+	public static final Block BOX_BLOCK;
+	public static final BlockItem BOX_BLOCK_ITEM;
+	public static final BlockEntityType<BoxBlockEntity> BOX_BLOCK_ENTITY;
+
 	public static final String MOD_ID = "minelife";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
