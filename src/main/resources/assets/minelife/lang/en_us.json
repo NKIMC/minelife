@@ -2,5 +2,6 @@
   "item.minelife.magnifier": "magnifier",
   "block.minelife.support_block": "support beam",
   "minelife.item": "MineLife Item",
-  "minelife.block": "MineLife Block"
+  "minelife.block": "MineLife Block",
+  "minelife.sb-support1-info": "first support item"
 }

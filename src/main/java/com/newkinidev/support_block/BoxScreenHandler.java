@@ -1,6 +1,7 @@
-package com.newkinidev.block;
+package com.newkinidev.support_block;
 
 import com.newkinidev.MineLife;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -8,6 +9,7 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.text.Text;
 
 public class BoxScreenHandler extends ScreenHandler {
     private final Inventory inventory;
@@ -32,12 +34,12 @@ public class BoxScreenHandler extends ScreenHandler {
         //This will not render the background of the slots however, this is the Screens job
         int m;
         int l;
+
         //Our inventory
-        for (m = 0; m < 3; ++m) {
-            for (l = 0; l < 3; ++l) {
-                this.addSlot(new Slot(inventory, l + m * 3, 62 + l * 18, 17 + m * 18));
-            }
-        }
+        this.addSlot(new Slot(inventory, 0, 47, 11));
+        this.addSlot(new Slot(inventory, 0, 47, 34));
+        this.addSlot(new Slot(inventory, 0, 68, 34));
+        this.addSlot(new Slot(inventory, 0, 47, 58));
         //The player inventory
         for (m = 0; m < 3; ++m) {
             for (l = 0; l < 9; ++l) {
@@ -48,7 +50,6 @@ public class BoxScreenHandler extends ScreenHandler {
         for (m = 0; m < 9; ++m) {
             this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 142));
         }
-
     }
 
     @Override
@@ -58,7 +59,7 @@ public class BoxScreenHandler extends ScreenHandler {
 
     // Shift + Player Inv Slot
     @Override
-    public ItemStack transferSlot(PlayerEntity player, int invSlot) {
+    public ItemStack quickMove(PlayerEntity player, int invSlot) {
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
         if (slot != null && slot.hasStack()) {

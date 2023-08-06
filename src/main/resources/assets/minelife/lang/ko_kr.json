@@ -2,5 +2,6 @@
   "item.minelife.magnifier": "돋보기",
   "block.minelife.support_block": "지지대",
   "minelife.item": "마인라이프 아이템",
-  "minelife.block": "마인라이프 블록"
+  "minelife.block": "마인라이프 블록",
+  "minelife.sb-support1-info": "지지할 첫번쨰 아이템"
 }

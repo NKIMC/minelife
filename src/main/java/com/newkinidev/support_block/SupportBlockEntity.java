@@ -1,25 +1,43 @@
-package com.newkinidev.block;
+package com.newkinidev.support_block;
 
 import com.newkinidev.MineLife;
 import com.newkinidev.inventory.ImplementedInventory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
+public class SupportBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
+    int progress = 0;
 
-    public BoxBlockEntity(BlockPos pos, BlockState state) {
+    public SupportBlockEntity(BlockPos pos, BlockState state) {
         super(MineLife.BOX_BLOCK_ENTITY, pos, state);
+
+        new PropertyDelegate() {
+            public int get(int index) {
+                return this.progress;
+            }
+
+            public void set(int index, int value) {
+                this.progress = value;
+            }
+
+            public int size() {
+                return 1;
+            }
+        };
     }
 
 
@@ -44,7 +62,7 @@ public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFac
     @Override
     public Text getDisplayName() {
         // for 1.19+
-        return Text.translatable(getCachedState().getBlock().getTranslationKey());
+        return Text.empty();
         // for earlier versions
         // return new TranslatableText(getCachedState().getBlock().getTranslationKey());
     }
@@ -56,10 +74,19 @@ public class BoxBlockEntity extends BlockEntity implements NamedScreenHandlerFac
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
+    public void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, this.inventory);
-        return nbt;
+    }
+
+    @Override
+    public void getTicker(World world, BlockState blockState, BlockEntityType blockEntityType){
+        if (progress >= 40) {
+            MineLife.LOGGER.info("hello world!");
+        } else {
+            progress++;
+        }
+
     }
 }
 

@@ -1,4 +1,4 @@
-package com.newkinidev.block;
+package com.newkinidev.support_block;
 
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -13,15 +13,16 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import com.newkinidev.support_block.BoxScreen;
 
-public class BoxBlock extends BlockWithEntity {
-    public BoxBlock(Settings settings) {
+public class SupportBlock extends BlockWithEntity {
+    public SupportBlock(Settings settings) {
         super(settings);
     }
 
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new BoxBlockEntity(pos, state);
+        return new SupportBlockEntity(pos, state);
     }
 
     @Override
@@ -45,14 +46,13 @@ public class BoxBlock extends BlockWithEntity {
         return ActionResult.SUCCESS;
     }
 
-
     //This method will drop all items onto the ground when the block is broken
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof BoxBlockEntity) {
-                ItemScatterer.spawn(world, pos, (BoxBlockEntity)blockEntity);
+            if (blockEntity instanceof SupportBlockEntity) {
+                ItemScatterer.spawn(world, pos, (SupportBlockEntity)blockEntity);
                 // update comparators
                 world.updateComparators(pos,this);
             }
