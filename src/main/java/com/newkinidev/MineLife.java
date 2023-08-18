@@ -25,22 +25,22 @@ import org.slf4j.LoggerFactory;
 
 public class MineLife implements ModInitializer {
 
-	public static final Block BOX_BLOCK;
-	public static final BlockItem BOX_BLOCK_ITEM;
-	public static final BlockEntityType<SupportBlockEntity> BOX_BLOCK_ENTITY;
+	public static final Block SUPPORT_BLOCK;
+	public static final BlockItem SUPPORT_BLOCK_ITEM;
+	public static final BlockEntityType<SupportBlockEntity> SUPPORT_BLOCK_ENTITY;
 
 	public static final String MOD_ID = "minelife";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static final Identifier BOX = new Identifier(MOD_ID, "box_block");
+	public static final Identifier BOX = new Identifier(MOD_ID, "support_block");
 
 	public static final ScreenHandlerType<BoxScreenHandler> BOX_SCREEN_HANDLER;
 
 	static {
-		BOX_BLOCK = Registry.register(Registries.BLOCK, BOX, new SupportBlock(FabricBlockSettings.copyOf(Blocks.CHEST)));
-		BOX_BLOCK_ITEM = Registry.register(Registries.ITEM, BOX, new BlockItem(BOX_BLOCK, new Item.Settings()));
+		SUPPORT_BLOCK = Registry.register(Registries.BLOCK, BOX, new SupportBlock(FabricBlockSettings.copyOf(Blocks.CHEST)));
+		SUPPORT_BLOCK_ITEM = Registry.register(Registries.ITEM, BOX, new BlockItem(SUPPORT_BLOCK, new Item.Settings()));
 
-		BOX_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, BOX, FabricBlockEntityTypeBuilder.create(SupportBlockEntity::new, BOX_BLOCK).build(null));
+		SUPPORT_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, BOX, FabricBlockEntityTypeBuilder.create(SupportBlockEntity::new, SUPPORT_BLOCK).build(null));
 
 		BOX_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(BOX, BoxScreenHandler::new);
 	}

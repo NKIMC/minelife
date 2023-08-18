@@ -1,6 +1,6 @@
 package com.newkinidev.block;
 
-import com.newkinidev.item.ModItemGroup;
+import com.newkinidev.support_block.SupportBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -15,18 +15,19 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-    public static final Block SUPPORT_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_ORE).sounds(BlockSoundGroup.STONE));
+    public static final Block TEMP_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_ORE).sounds(BlockSoundGroup.STONE));
 
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries){
-        entries.add(SUPPORT_BLOCK);
+        entries.add(TEMP_BLOCK);
+        entries.add(MineLife.SUPPORT_BLOCK);
     }
 
     private static void registerBlockItem(){
-        Registry.register(Registries.ITEM, new Identifier(MineLife.MOD_ID, "support_block"), new BlockItem(SUPPORT_BLOCK, new FabricItemSettings()));
+        Registry.register(Registries.ITEM, new Identifier(MineLife.MOD_ID, "temp_block"), new BlockItem(TEMP_BLOCK, new FabricItemSettings()));
     }
 
     private static void registerBlock(){
-        Registry.register(Registries.BLOCK, new Identifier(MineLife.MOD_ID, "support_block"), SUPPORT_BLOCK);
+        Registry.register(Registries.BLOCK, new Identifier(MineLife.MOD_ID, "temp_block"), TEMP_BLOCK);
     }
 
     public static void registerModBlocks() {

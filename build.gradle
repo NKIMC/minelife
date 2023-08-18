@@ -10,13 +10,6 @@ base {
 	archivesName = project.archives_base_name
 }
 
-repositories {
-	maven {
-		name = 'GeckoLib'
-		url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
-	}
-}
-
 loom {
     runs {
 		// This adds a new gradle task that runs the datagen API: "gradlew runDatagen"

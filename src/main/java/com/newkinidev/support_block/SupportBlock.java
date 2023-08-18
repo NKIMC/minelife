@@ -1,9 +1,12 @@
 package com.newkinidev.support_block;
 
+import com.newkinidev.MineLife;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
@@ -13,7 +16,8 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.newkinidev.support_block.BoxScreen;
+import net.minecraft.world.level.LevelInfo;
+import org.jetbrains.annotations.Nullable;
 
 public class SupportBlock extends BlockWithEntity {
     public SupportBlock(Settings settings) {
@@ -68,6 +72,27 @@ public class SupportBlock extends BlockWithEntity {
     @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
         return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        if (type == MineLife.SUPPORT_BLOCK_ENTITY) {
+            return new BlockEntityTicker<T>() {
+                @Override
+                public void tick(World world, BlockPos pos, BlockState state, T blockEntity) {
+                    SupportBlockEntity sbeType = (SupportBlockEntity) blockEntity;
+
+                    if (sbeType.progress >= 20*10){
+                        MineLife.LOGGER.info("hello world"); //LevelInfo.getBrightness()
+
+                    } else {
+                        sbeType.progress++;
+                    }
+                }
+            };
+        }
+        return null;
     }
 }
 

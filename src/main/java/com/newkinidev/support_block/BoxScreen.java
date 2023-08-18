@@ -29,6 +29,7 @@ public class BoxScreen extends HandledScreen<BoxScreenHandler> {
         super.render(matrices, mouseX, mouseY, delta);
         drawMouseoverTooltip(matrices, mouseX, mouseY);
         matrices.drawText(textRenderer, Text.translatable("minelife.sb-support1-info"),129+60,40+10,0x000, false);
+        matrices.drawText(textRenderer, Text.translatable(this.handler.property.get(0)+"%"),129+60,40+10,0x000, false);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.newkinidev.block;
 
 import com.newkinidev.MineLife;
-import com.newkinidev.item.ModItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -15,7 +14,7 @@ import net.minecraft.util.Identifier;
 public class ModBlockGroup {
     // Define your custom ItemGroup
     public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()
-            .icon(() -> new ItemStack(ModBlocks.SUPPORT_BLOCK))
+            .icon(() -> new ItemStack(MineLife.SUPPORT_BLOCK))
             .displayName(Text.translatable("minelife.block"))
             .build();
 

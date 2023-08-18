@@ -7,24 +7,33 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
 
 public class BoxScreenHandler extends ScreenHandler {
+
+    public final PropertyDelegate property;
     private final Inventory inventory;
+
 
     //This constructor gets called on the client when the server wants it to open the screenHandler,
     //The client will call the other constructor with an empty Inventory and the screenHandler will automatically
     //sync this empty inventory with the inventory on the server.
     public BoxScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(9));
+        this(syncId, playerInventory, new SimpleInventory(9), new ArrayPropertyDelegate(1));
     }
 
     //This constructor gets called from the BlockEntity on the server without calling the other constructor first, the server knows the inventory of the container
     //and can therefore directly provide it as an argument. This inventory will then be synced to the client.
-    public BoxScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+    public BoxScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(MineLife.BOX_SCREEN_HANDLER, syncId);
+
+        property = propertyDelegate;
+        addProperties(property);
+
         checkSize(inventory, 9);
         this.inventory = inventory;
         //some inventories do custom logic when a player opens it.
@@ -35,11 +44,20 @@ public class BoxScreenHandler extends ScreenHandler {
         int m;
         int l;
 
-        //Our inventory
-        this.addSlot(new Slot(inventory, 0, 47, 11));
-        this.addSlot(new Slot(inventory, 0, 47, 34));
-        this.addSlot(new Slot(inventory, 0, 68, 34));
-        this.addSlot(new Slot(inventory, 0, 47, 58));
+        this.addSlot(new Slot(inventory,-1, 0, 0) {
+            @Override
+            public void setStack(ItemStack stack) {
+                super.setStack(stack);
+                MineLife.LOGGER.info(String.valueOf(stack));
+            }
+
+        });
+
+        //Our invntory
+        this.addSlot(new Slot(inventory, 0, 47, 10));
+        this.addSlot(new Slot(inventory, 1, 47, 34));
+        this.addSlot(new Slot(inventory, 2, 68, 34));
+        this.addSlot(new Slot(inventory, 3, 47, 58));
         //The player inventory
         for (m = 0; m < 3; ++m) {
             for (l = 0; l < 9; ++l) {
@@ -82,4 +100,6 @@ public class BoxScreenHandler extends ScreenHandler {
 
         return newStack;
     }
+
+
 }
